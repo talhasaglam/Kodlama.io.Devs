@@ -20,11 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Technologies\Commands\CreateTechnology\DeleteTechnology\" />
-    <Folder Include="Features\Technologies\Commands\CreateTechnology\UpdateTechnology\" />
-    <Folder Include="Features\Technologies\Commands\Models\" />
-    <Folder Include="Features\Technologies\Commands\Rules\" />
-    <Folder Include="Features\Technologies\Commands\Queries\" />
+    <Folder Include="Features\Technologies\Rules\" />
   </ItemGroup>
 
 </Project>

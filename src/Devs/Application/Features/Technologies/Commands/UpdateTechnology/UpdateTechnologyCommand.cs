@@ -13,34 +13,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Technologies.Commands.CreateTechnology.CreateTechnology
+namespace Application.Features.Technologies.Commands.UpdateTechnology
 {
-    public class CreateTechnologyCommand: IRequest<CreateTechnologyCommandDto>
+    public class UpdateTechnologyCommand : IRequest<UpdateProgrammingLanguageDto>
     {
         public string Name { get; set; }
 
         public Guid ProgLangId { get; set; }
 
-        public class CreateTechnologyCommandHandler : IRequestHandler<CreateTechnologyCommand, CreateTechnologyCommandDto>
+        public class UpdateTechnologyCommandHandler : IRequestHandler<UpdateTechnologyCommand, UpdateProgrammingLanguageDto>
         {
             private readonly ITechnologyRepository technologyRepo;
             private readonly IMapper _mapper;
-            private readonly ProgrammingLanguageBusinessRule programmingLanguageBusinessRule;
 
-            public CreateTechnologyCommandHandler(ITechnologyRepository technologyRepository, IMapper mapper)
+            public UpdateTechnologyCommandHandler(ITechnologyRepository technologyRepository, IMapper mapper)
             {
                 technologyRepo = technologyRepository;
                 _mapper = mapper;
             }
 
-            public async Task<CreateTechnologyCommandDto> Handle(CreateTechnologyCommand request, CancellationToken cancellationToken)
+            public async Task<UpdateProgrammingLanguageDto> Handle(UpdateTechnologyCommand request, CancellationToken cancellationToken)
             {
                 var technology = _mapper.Map<Technology>(request);
                 if (technology == null)
                     throw new EntityNotFoundException(nameof(Technology));
 
-               await technologyRepo.AddAsync(technology);
-                return _mapper.Map<CreateTechnologyCommandDto>(technology); ;
+                await technologyRepo.UpdateAsync(technology);
+                return _mapper.Map<UpdateProgrammingLanguageDto>(technology); ;
             }
         }
     }
