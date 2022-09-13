@@ -19,4 +19,12 @@
     <PackageReference Include="MediatR" Version="10.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Technologies\Commands\CreateTechnology\DeleteTechnology\" />
+    <Folder Include="Features\Technologies\Commands\CreateTechnology\UpdateTechnology\" />
+    <Folder Include="Features\Technologies\Commands\Models\" />
+    <Folder Include="Features\Technologies\Commands\Rules\" />
+    <Folder Include="Features\Technologies\Commands\Queries\" />
+  </ItemGroup>
+
 </Project>

@@ -22,6 +22,7 @@ namespace Persistence
                                                      options.UseSqlServer(
                                                          configuration.GetConnectionString("RentACarCampConnectionString")));
             services.AddScoped<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
+            services.AddScoped<ITechnologyRepository, TechnologyRepository>();
 
             var dataSeeder = bool.Parse(configuration["DbOptions:DataSeeder"]);
             if (dataSeeder)
@@ -32,6 +33,7 @@ namespace Persistence
 
         public static void AddDataSeederServices(IServiceCollection services)
         {
+            services.AddScoped<TechnologyDataSeeder>();
             services.AddScoped<ProgrammingLanguageDataSeeder>();
             services.AddScoped<DataSeederContributor>();
         }

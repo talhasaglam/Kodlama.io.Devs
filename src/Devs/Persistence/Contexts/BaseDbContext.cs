@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,6 +34,16 @@ namespace Persistence.Contexts
                 a.ToTable(nameof(ProgrammingLanguage)).HasKey(k => k.Id);
                 a.Property(p => p.Id).HasColumnName("Id");
                 a.Property(p => p.Name).HasColumnName("Name");
+                a.HasMany(p => p.Technologies);
+            });
+
+            modelBuilder.Entity<Technology>(a =>
+            {
+                a.ToTable(nameof(Technology)).HasKey(k => k.Id);
+                a.Property(p => p.Id).HasColumnName("Id");
+                a.Property(p => p.Name).HasColumnName("Name");
+                a.Property(x=>x.ProgLangId).HasColumnName("ProgLangId");
+                a.HasOne(x => x.ProgrammingLanguage).WithMany( x=>x.Technologies).HasForeignKey(x=>x.ProgLangId);
             });
 
         }
